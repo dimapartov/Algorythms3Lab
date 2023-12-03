@@ -1,4 +1,4 @@
-package Trees;
+package trees.bst;
 
 public interface AbstractBinarySearchTree<E extends Comparable<E>> {
     public static class Node<E> {

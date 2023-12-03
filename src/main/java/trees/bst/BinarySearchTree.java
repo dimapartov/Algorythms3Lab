@@ -1,6 +1,4 @@
-package Trees.impl;
-
-import Trees.AbstractBinarySearchTree;
+package trees.bst;
 
 public class BinarySearchTree<E extends Comparable<E>> implements AbstractBinarySearchTree<E> {
     private Node<E> root;

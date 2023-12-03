@@ -1,6 +1,4 @@
-package Trees.impl;
-
-import Trees.AbstractBinaryTree;
+package trees.bt;
 
 import java.util.*;
 import java.util.function.Consumer;
@@ -14,12 +12,12 @@ public class BinaryTree<E> implements AbstractBinaryTree<E> {
         this.leftTree = leftTree;
         this.rightTree = rightTree;
     }
-    private int height(AbstractBinaryTree<E> node) {
+    private int getHeight(AbstractBinaryTree<E> node) {
         if (node == null) {
             return 0;
         } else {
-            int leftHeight = height(node.getLeftTree());
-            int rightHeight = height(node.getRightTree());
+            int leftHeight = getHeight(node.getLeftTree());
+            int rightHeight = getHeight(node.getRightTree());
             return Math.max(leftHeight, rightHeight) + 1;
         }
     }
@@ -131,7 +129,7 @@ public class BinaryTree<E> implements AbstractBinaryTree<E> {
     }
     @Override
     public void drawTree() {
-        int maxHeight = height(this);
+        int maxHeight = getHeight(this);
         Queue<AbstractBinaryTree<E>> queue = new LinkedList<>();
         queue.add(this);
         int level = 1;
