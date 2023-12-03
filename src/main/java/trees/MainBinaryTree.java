@@ -5,7 +5,11 @@ import trees.bt.BinaryTree;
 
 public class MainBinaryTree {
     public static void main(String[] args) {
-        AbstractBinaryTree<Integer> tree = new BinaryTree<>(13, new BinaryTree<>(9, new BinaryTree<>(4, new BinaryTree<>(2, null, new BinaryTree<>(3, null, null)), null), new BinaryTree<>(12, null, null)), new BinaryTree<>(25, new BinaryTree<>(14, new BinaryTree<>(6, null, null), new BinaryTree<>(11, null, null)), new BinaryTree<>(7, null, null)));
+        AbstractBinaryTree<Integer> tree = new BinaryTree<>
+        (13,new BinaryTree<>(9,new BinaryTree<>(4,new BinaryTree<>(2,null,new BinaryTree<>(3,null,null)),null), 
+                                                        new BinaryTree<>(12, null, null)),
+                new BinaryTree<>(25,new BinaryTree<>(14,new BinaryTree<>(6,null,null),new BinaryTree<>(11,null,null)),
+                                                        new BinaryTree<>(7,null,null)));
         System.out.println("As indented pre order:");
         System.out.println(tree.asIndentedPreOrder(0));
         System.out.println("Tree:");
