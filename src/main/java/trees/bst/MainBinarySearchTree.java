@@ -1,4 +1,4 @@
-package trees;
+package trees.bst;
 
 public class MainBinarySearchTree {
     public static void main(String[] args) {

@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BinarySearchTree<E extends Comparable<E>> implements AbstractBinarySearchTree<E> {
+
     private Node<E> root;
+
     @Override
     public void insert(E element) {
         root = insertRec(root, element);
@@ -20,6 +22,7 @@ public class BinarySearchTree<E extends Comparable<E>> implements AbstractBinary
         }
         return root;
     }
+
     @Override
     public boolean contains(E element) {
         return containsRec(root, element);
@@ -36,6 +39,7 @@ public class BinarySearchTree<E extends Comparable<E>> implements AbstractBinary
             return containsRec(root.rightChild, element);
         }
     }
+
     @Override
     public AbstractBinarySearchTree<E> search(E element) {
         Node<E> resultNode = searchRec(root, element);
@@ -51,10 +55,12 @@ public class BinarySearchTree<E extends Comparable<E>> implements AbstractBinary
             return searchRec(root.rightChild, element);
         }
     }
+
     @Override
     public Node<E> getRoot() {
         return root;
     }
+
     @Override
     public Node<E> getLeft() {
         if (root != null) {
@@ -62,6 +68,7 @@ public class BinarySearchTree<E extends Comparable<E>> implements AbstractBinary
         }
         return null;
     }
+
     @Override
     public Node<E> getRight() {
         if (root != null) {
@@ -69,6 +76,7 @@ public class BinarySearchTree<E extends Comparable<E>> implements AbstractBinary
         }
         return null;
     }
+
     @Override
     public E getValue() {
         if (root != null) {
@@ -76,13 +84,16 @@ public class BinarySearchTree<E extends Comparable<E>> implements AbstractBinary
         }
         return null;
     }
+
     @Override
     public void drawTree() {
         // Реализация отрисовки дерева может быть добавлена здесь
     }
+
     public BinarySearchTree(Node<E> root) {
         this.root = root;
     }
+
     @Override
     public List<E> findDuplicates(List<E> elements) {
         List<E> duplicates = new ArrayList<>();

@@ -1,4 +1,4 @@
-package trees;
+package trees.bt;
 
 import trees.bt.AbstractBinaryTree;
 import trees.bt.BinaryTree;
