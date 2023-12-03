@@ -1,5 +1,7 @@
 package trees.bst;
 
+import java.util.List;
+
 public interface AbstractBinarySearchTree<E extends Comparable<E>> {
     public static class Node<E> {
         public E value;
@@ -30,4 +32,5 @@ public interface AbstractBinarySearchTree<E extends Comparable<E>> {
     Node<E> getRight();
     E getValue();
     void drawTree();
+    List<E> findDuplicates(List<E> elements); // 11 task - find duplicates in list;
 }

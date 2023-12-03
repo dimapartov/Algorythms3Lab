@@ -1,5 +1,8 @@
 package trees.bst;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BinarySearchTree<E extends Comparable<E>> implements AbstractBinarySearchTree<E> {
     private Node<E> root;
     @Override
@@ -79,5 +82,17 @@ public class BinarySearchTree<E extends Comparable<E>> implements AbstractBinary
     }
     public BinarySearchTree(Node<E> root) {
         this.root = root;
+    }
+    @Override
+    public List<E> findDuplicates(List<E> elements) {
+        List<E> duplicates = new ArrayList<>();
+        for (E element : elements) {
+            if (this.contains(element)) {
+                duplicates.add(element);
+            } else {
+                this.insert(element);
+            }
+        }
+        return duplicates;
     }
 }
