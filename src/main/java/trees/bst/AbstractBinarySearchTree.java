@@ -32,5 +32,6 @@ public interface AbstractBinarySearchTree<E extends Comparable<E>> {
     Node<E> getRight();
     E getValue();
     void drawTree();
+    int getHeight(Node<E> node);
     List<E> findDuplicates(List<E> elements); // 11 task - find duplicates in list;
 }

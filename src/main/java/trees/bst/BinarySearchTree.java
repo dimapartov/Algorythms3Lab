@@ -1,11 +1,20 @@
 package trees.bst;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 
 public class BinarySearchTree<E extends Comparable<E>> implements AbstractBinarySearchTree<E> {
 
     private Node<E> root;
+
+    public BinarySearchTree(Node<E> root) {
+        this.root = root;
+    }
+
+    public BinarySearchTree() {
+    }
 
     @Override
     public void insert(E element) {
@@ -86,12 +95,61 @@ public class BinarySearchTree<E extends Comparable<E>> implements AbstractBinary
     }
 
     @Override
-    public void drawTree() {
-        // Реализация отрисовки дерева может быть добавлена здесь
+    public int getHeight(Node<E> node) {
+        if (node == null) {
+            return 0;
+        } else {
+            int leftHeight = getHeight(node.leftChild);
+            int rightHeight = getHeight(node.rightChild);
+            return Math.max(leftHeight, rightHeight) + 1;
+        }
     }
 
-    public BinarySearchTree(Node<E> root) {
-        this.root = root;
+    @Override
+    public void drawTree() {
+        int maxHeight = getHeight(this.root);
+        Queue<Node<E>> queue = new LinkedList<>();
+        queue.add(this.root);
+
+        int level = 1;
+        int nodesInLevel = 1;
+
+        while (!queue.isEmpty()) {
+            int nodesInNextLevel = 0;
+            int spacesBefore = (int) (Math.pow(2, maxHeight - level) - 1);
+            int spacesBetween = (int) (Math.pow(2, maxHeight - level + 1) - 1);
+
+            for (int i = 0; i < spacesBefore; i++) {
+                System.out.print(" ");
+            }
+
+            for (int i = 0; i < nodesInLevel; i++) {
+                Node<E> node = queue.poll();
+                if (node != null) {
+                    System.out.print(node.value);
+                    queue.add(node.leftChild);
+                    queue.add(node.rightChild);
+                    nodesInNextLevel += 2;
+                } else {
+                    System.out.print(" ");
+                    queue.add(null);
+                    queue.add(null);
+                }
+
+                for (int j = 0; j < spacesBetween; j++) {
+                    System.out.print(" ");
+                }
+            }
+
+            System.out.println();
+
+            level++;
+            nodesInLevel = nodesInNextLevel;
+
+            if (level > maxHeight) {
+                break;
+            }
+        }
     }
 
     @Override
@@ -106,4 +164,5 @@ public class BinarySearchTree<E extends Comparable<E>> implements AbstractBinary
         }
         return duplicates;
     }
+
 }
