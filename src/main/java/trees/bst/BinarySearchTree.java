@@ -107,49 +107,57 @@ public class BinarySearchTree<E extends Comparable<E>> implements AbstractBinary
 
     @Override
     public void drawTree() {
-        int maxHeight = getHeight(this.root);
+        if (root == null) {
+            System.out.println("Tree is empty");
+            return;
+        }
+
+        int maxLevel = maxLevel(root);
+
         Queue<Node<E>> queue = new LinkedList<>();
-        queue.add(this.root);
+        queue.add(root);
 
-        int level = 1;
-        int nodesInLevel = 1;
-
+        int level = 0;
         while (!queue.isEmpty()) {
-            int nodesInNextLevel = 0;
-            int spacesBefore = (int) (Math.pow(2, maxHeight - level) - 1);
-            int spacesBetween = (int) (Math.pow(2, maxHeight - level + 1) - 1);
+            int levelNodes = queue.size();
+            int innerSpace = (int) Math.pow(2, maxLevel - level) - 1;
+            int outerSpace = (int) Math.pow(2, maxLevel - level - 1) - 1;
 
-            for (int i = 0; i < spacesBefore; i++) {
-                System.out.print(" ");
-            }
+            printSpaces(outerSpace);
 
-            for (int i = 0; i < nodesInLevel; i++) {
+            while (levelNodes > 0) {
                 Node<E> node = queue.poll();
+                System.out.print(node == null ? " " : node.value);
+
                 if (node != null) {
-                    System.out.print(node.value);
                     queue.add(node.leftChild);
                     queue.add(node.rightChild);
-                    nodesInNextLevel += 2;
                 } else {
-                    System.out.print(" ");
                     queue.add(null);
                     queue.add(null);
                 }
 
-                for (int j = 0; j < spacesBetween; j++) {
-                    System.out.print(" ");
-                }
+                printSpaces(innerSpace);
+                levelNodes--;
             }
 
             System.out.println();
-
             level++;
-            nodesInLevel = nodesInNextLevel;
-
-            if (level > maxHeight) {
+            if (level == maxLevel) {
                 break;
             }
         }
+    }
+    private void printSpaces(int count) {
+        for (int i = 0; i < count; i++) {
+            System.out.print(" ");
+        }
+    }
+    private int maxLevel(Node<E> node) {
+        if (node == null) {
+            return 0;
+        }
+        return Math.max(maxLevel(node.leftChild), maxLevel(node.rightChild)) + 1;
     }
 
     @Override

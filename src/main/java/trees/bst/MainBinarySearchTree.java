@@ -6,13 +6,16 @@ import java.util.List;
 public class MainBinarySearchTree {
     public static void main(String[] args) {
 
-        BinarySearchTree<Integer> binarySearchTree = new BinarySearchTree<>();
+        AbstractBinarySearchTree<Integer> binarySearchTree = new BinarySearchTree<>();
         binarySearchTree.insert(2);
         binarySearchTree.insert(21);
         binarySearchTree.insert(23);
-        binarySearchTree.insert(-5);
+        binarySearchTree.insert(1);
         binarySearchTree.insert(10);
         binarySearchTree.insert(6);
+        binarySearchTree.insert(7);
+        binarySearchTree.insert(5);
+        binarySearchTree.insert(4);
 
         System.out.println("------------------------------------Binary search tree-----------------------------------");
         binarySearchTree.drawTree();
